@@ -36,7 +36,7 @@
       #kolombaru li { font-size: 1.8rem; padding: 10px; }
     }
 
-    /* --- BACKGROUND ATAU WALLPAPER STABLE --- */
+    /* --- BACKGROUND STABLE --- */
     body {
       margin: 0;
       min-height: 100vh;
@@ -48,19 +48,18 @@
       background-attachment: fixed !important;
     }
 
-    /* Sembunyikan elemen latar bentrok dari template bawaan */
+    /* Sembunyikan latar bawaan yang bentrok */
     #bodyblur, #beneranblur, #wallpaper {
       display: none !important;
       opacity: 0 !important;
     }
   </style>
-
 </head>
 
 <body>
 
-<!-- Ganti Audio di sini -->
-<audio src="Pamungkas - Happy Birthday To You (Official Lyrics Video) (128).mp3" id="linkmp3" class="sembunyi"></audio>
+<!-- Ganti nama file audio di GitHub menjadi lagu.mp3 -->
+<audio src="lagu.mp3" id="linkmp3" class="sembunyi"></audio>
 
 <div id='Content'>
   <div id="kadoIn">
@@ -153,8 +152,11 @@
 
     document.getElementById("kadoIn").onclick = function () {
       if (fungsiAwal == 0) {
-        audio.play(); 
         fungsiAwal = 1; 
+        // Menggunakan catch agar teks tetap berjalan jika audio error/diblokir
+        audio.play().catch(function(error) {
+          console.log("Audio diblokir atau gagal dimuat:", error);
+        });
         kadoIn.style = "transition:all .8s ease;transform:scale(10);opacity:0"; 
         ket.style = "display:none"; 
         setTimeout(initengahan, 300); 
@@ -182,9 +184,9 @@
     var tomnegatif = 'Endak';
 
     async function menuju() {
-  pesanwhatsapp = "Makasii udah ngucapin " + nama + " ultah ><"; 
-  await swals.fire('OK!', 'Kirim jawabannya ke WhatsApp aku, ya!', 'success'); 
-  window.location = "https://api.whatsapp.com/send?phone=6282123968224&text=" + pesanwhatsapp;
+      pesanwhatsapp = "Makasii udah ngucapin " + nama + " ultah ><"; 
+      await swals.fire('OK!', 'Kirim jawabannya ke WhatsApp aku, ya!', 'success'); 
+      window.location = "https://api.whatsapp.com/send?phone=6282123968224&text=" + pesanwhatsapp;
     }
   </script>
   <script src="https://malasid.github.io/html/hbd.js"></script>
