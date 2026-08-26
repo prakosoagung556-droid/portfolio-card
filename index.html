@@ -11,11 +11,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Shippori+Antique:wght@400;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
 
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
-  <link href="https://feeldreams.github.io/heihbd/style.css" rel="stylesheet" type="text/css" />
-  <script src="https://unpkg.com/typeit@8.7.0/dist/index.umd.js"></script>
   <script src="https://kit.fontawesome.com/4f3ce16e3e.js" crossorigin="anonymous"></script>
 
   <style>
@@ -34,60 +31,51 @@
       font-family: 'Shippori Antique', sans-serif;
     }
 
-    /* Paksa Konten Muncul dari Awal */
     #Content { 
       width: 100%; 
       max-width: 520px; 
       margin: 0 auto; 
       padding: 0 16px 32px; 
       opacity: 1 !important; 
-      margin-top: 12vh !important;
+      margin-top: 15vh !important;
       display: block !important;
     }
 
     img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
     #kadoIn { cursor: pointer; text-align: center; }
-    #kadoIn img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin: 0 auto; }
-    .kumpulanstiker { gap: 10px; justify-content: center; display: flex; }
+    #kadoIn img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin: 0 auto; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+    
+    .kumpulanstiker { gap: 10px; justify-content: center; display: flex; margin-bottom: 15px; }
     .kumpulanstiker img { display: none; width: 90px; height: 90px; }
     
     #kolombaru { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; padding: 0; margin: 15px 0; }
-    #kolombaru li { list-style: none; padding: 8px 12px; font-size: 2rem; cursor: pointer; background: rgba(255,255,255,0.5); border-radius: 10px; }
+    #kolombaru li { list-style: none; padding: 8px 12px; font-size: 2rem; cursor: pointer; background: rgba(255,255,255,0.7); border-radius: 10px; }
     
-    #Tombol, #opsL { width: 100%; text-align: center; display: none; }
+    #Tombol { width: 100%; text-align: center; display: none; margin-top: 15px; }
     #Tombol a { display: inline-block; padding: 12px 24px; background: #fff; border-radius: 20px; text-decoration: none; color: #000; font-weight: bold; cursor: pointer; }
     
-    blockquote { padding: 16px; background: rgba(255, 255, 255, 0.7); border-radius: 15px; display: none; text-align: center; }
-    blockquote p { display: none; margin: 8px 0; }
-
-    #bodyblur, #beneranblur, #wallpaper { display: none !important; opacity: 0 !important; }
+    blockquote { padding: 16px; background: rgba(255, 255, 255, 0.85); border-radius: 15px; display: none; text-align: center; }
+    blockquote p { display: none; margin: 10px 0; color: #333; line-height: 1.5; }
   </style>
 </head>
 
 <body>
 
 <div id='Content'>
-  <div id="kadoIn">
-    <!-- Gambar Profil/Kado -->
+  <div id="kadoIn" onclick="mulaiAcara()">
     <img src="qolbi.png" class="foto-bulat" alt="Profil" />
   </div>
   <p id="ket" style="text-align: center; font-weight: bold; color: white; margin-top: 15px; font-size: 1.2rem;">KLIK KADONYA!!!!!</p>
 
   <div class="kumpulanstiker">
     <img src="https://feeldreams.github.io/bunga.gif" id="fotostiker" />
-    <img src="https://feeldreams.github.io/pusn.gif" id="fotostiker1" />
-    <img src="https://feeldreams.github.io/pandacoklat.gif" id="fotostiker2" />
-    <img src="https://feeldreams.github.io/cilukba.gif" id="fotostiker3" />
-    <img src="https://feeldreams.github.io/pandakuning.gif" id="fotostiker4" />
-    <img src="https://feeldreams.github.io/emawh.gif" id="fotostiker5" />
-    <img src="https://feeldreams.github.io/pandacoklat.gif" id="fotostiker6" />
   </div>
 
-  <p id="halo" class="halo" style="text-align: center; font-size: 1.3rem; color: white; font-weight: bold;"></p>
+  <p id="halo" style="text-align: center; font-size: 1.3rem; color: white; font-weight: bold; margin-bottom: 10px;"></p>
 
   <div>
     <blockquote id='bq'>
-      <p id="kalimat"></p>
+      <p id="kalimat" style="font-weight: bold;">I have a few words for my older sister.</p>
 
       <p id="pesan1" style="font-weight: bold;">KLIK 4 LOVE DIBAWAH</p>
       <div id="kolombaru" style="display:none;">
@@ -97,7 +85,6 @@
         <li id="lv4" onclick="klikLove(4)">🤍</li>
       </div>
 
-      <p id="pesan2">Tunggu...</p>
       <p id="pesan3">Pergi ke kuburan lalu membakar dupa<br>Dalam kuburan tidak ada sumur<br>Tidak bisa aku memberi apa-apa<br>Selain ucapan semoga panjang umur</p>
       <p id="pesan4" style="font-size: 1.2rem; font-weight: bold;">Happy Birthday Kak</p>
       <p id="pesan5">Selamat bertambah usia, Kakakku tersayang.</p>
@@ -106,8 +93,6 @@
       <p id="pesan8">Hehehe aku lum bise berik ape ape kak:v</p>
       <p id="pesan9">Barakallah fii umrik, Kakakku tercinta. Semoga Allah senantiasa melimpahkan rahmat, kesehatan, dan keberkahan di setiap detik usiamu. Semoga kita bisa terus bersama hingga kelak dipertemukan kembali di surga-Nya.</p>
       <p id="pesan10" style="font-weight: bold;">HAPPY LEVEL UP DAY YAH KAK ALL THE BEST</p>
-
-      <p id="opsL" onclick="lanjutPesan()">Klik Disini</p>
     </blockquote>
   </div>
 
@@ -121,8 +106,8 @@
 
   const swals = Swal.mixin({allowOutsideClick: false, cancelButtonColor: '#FF0040', imageHeight: 80});
 
-  document.getElementById("kadoIn").onclick = function () {
-    // Coba putar audio aman
+  function mulaiAcara() {
+    // Putar audio
     try {
       audio.play().catch(e => console.log("Audio diblokir browser"));
     } catch(e) {}
@@ -139,26 +124,17 @@
       input: 'text',
     });
     
-    if (nama && nama.length < 11) {
+    if (nama && nama.trim() !== "") {
       namaUser = nama;
       document.getElementById("fotostiker").style.display = "block";
       document.getElementById("halo").innerHTML = "Hai, " + nama + " ✨";
       
-      setTimeout(() => {
-        document.getElementById("bq").style.display = "block";
-        document.getElementById("kalimat").style.display = "block";
-        new TypeIt("#kalimat", {
-          strings: ["I have a few words for my older sister."],
-          speed: 50,
-          waitUntilFinished: true,
-          afterComplete: function() {
-            document.getElementById("pesan1").style.display = "block";
-            document.getElementById("kolombaru").style.display = "flex";
-          }
-        }).go();
-      }, 1000);
+      document.getElementById("bq").style.display = "block";
+      document.getElementById("kalimat").style.display = "block";
+      document.getElementById("pesan1").style.display = "block";
+      document.getElementById("kolombaru").style.display = "flex";
     } else {
-      await swals.fire('Ups!', 'Nama tidak boleh kosong atau lebih dari 10 karakter, ya!'); 
+      await swals.fire('Ups!', 'Nama tidak boleh kosong, ya!'); 
       inipesan();
     }
   }
@@ -179,7 +155,7 @@
     for (let i = 0; i < listPesan.length; i++) {
       let el = document.getElementById(listPesan[i]);
       el.style.display = "block";
-      await new Promise(r => setTimeout(r, 3000));
+      await new Promise(r => setTimeout(r, 2500));
       if (i < listPesan.length - 1) el.style.display = "none";
     }
     
