@@ -37,6 +37,45 @@
   #ket, #pesan1, #pesan2, #pesan3, #pesan4, #pesan5, #pesan6, #pesan7, #pesan8, #pesan9, #pesan10 { font-size: 0.95rem; }
   #kolombaru li { font-size: 1.8rem; padding: 10px; }
 
+      /* 1. Paksa Body Menampilkan Background */
+body {
+  background-image: url('balon.jpeg') !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-attachment: fixed !important;
+}
+
+/* 2. Matikan Overlay Hitam Pembawaan Template */
+#beneranblur, 
+#bodyblur::before, 
+#bodyblur::after {
+  display: none !important;
+  opacity: 0 !important;
+  background: none !important;
+}
+
+/* 3. Paksa Gambar Wallpaper Muncul */
+#bodyblur {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: -1 !important;
+}
+
+#wallpaper {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
   body {
     background-image: url('balon.jpeg') !important;
     background-size: cover !important;
