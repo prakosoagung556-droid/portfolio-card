@@ -51,15 +51,31 @@
     #kolombaru { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; padding: 0; margin: 15px 0; }
     #kolombaru li { list-style: none; padding: 8px 12px; font-size: 2rem; cursor: pointer; background: rgba(255,255,255,0.7); border-radius: 10px; }
     
-    #Tombol { width: 100%; text-align: center; display: none; margin-top: 15px; }
-    #Tombol a { display: inline-block; padding: 12px 24px; background: #fff; border-radius: 20px; text-decoration: none; color: #000; font-weight: bold; cursor: pointer; }
+    #Tombol, #TombolNext { width: 100%; text-align: center; margin-top: 15px; }
+    #Tombol { display: none; }
+    #TombolNext { display: none; }
     
-    blockquote { padding: 16px; background: rgba(255, 255, 255, 0.85); border-radius: 15px; display: none; text-align: center; }
-    blockquote p { display: none; margin: 10px 0; color: #333; line-height: 1.5; }
+    #Tombol a, #TombolNext a { 
+      display: inline-block; 
+      padding: 10px 20px; 
+      background: #fff; 
+      border-radius: 20px; 
+      text-decoration: none; 
+      color: #000; 
+      font-weight: bold; 
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    
+    blockquote { padding: 18px; background: rgba(255, 255, 255, 0.88); border-radius: 15px; display: none; text-align: center; }
+    blockquote p { display: none; margin: 10px 0; color: #333; line-height: 1.5; font-size: 1rem; }
   </style>
 </head>
 
 <body>
+
+<!-- Elemen Audio Pemutar Lagu -->
+<audio id="linkmp3" src="lagu.mp3" preload="auto"></audio>
 
 <div id='Content'>
   <div id="kadoIn" onclick="mulaiAcara()">
@@ -85,6 +101,7 @@
         <li id="lv4" onclick="klikLove(4)">🤍</li>
       </div>
 
+      <!-- Pesan Berantai -->
       <p id="pesan3">Pergi ke kuburan lalu membakar dupa<br>Dalam kuburan tidak ada sumur<br>Tidak bisa aku memberi apa-apa<br>Selain ucapan semoga panjang umur</p>
       <p id="pesan4" style="font-size: 1.2rem; font-weight: bold;">Happy Birthday Kak</p>
       <p id="pesan5">Selamat bertambah usia, Kakakku tersayang.</p>
@@ -96,21 +113,28 @@
     </blockquote>
   </div>
 
-  <div id="Tombol"><a id="By" onclick="menuju()">💌 Lanjut</a></div>
+  <!-- Tombol Navigasi Klik Satu per Satu -->
+  <div id="TombolNext"><a onclick="lanjutkanTeks()">Klik Disini ✨</a></div>
+  <!-- Tombol Akhir WhatsApp -->
+  <div id="Tombol"><a id="By" onclick="menuju()">💌 Lanjut Ke WA</a></div>
 </div>
 
 <script>
-  let audio = new Audio('lagu.mp3');
   let countLove = 0;
   let namaUser = "";
+  let indexPesan = 0;
+  let listPesan = ["pesan3", "pesan4", "pesan5", "pesan6", "pesan7", "pesan8", "pesan9", "pesan10"];
 
   const swals = Swal.mixin({allowOutsideClick: false, cancelButtonColor: '#FF0040', imageHeight: 80});
 
   function mulaiAcara() {
-    // Putar audio
-    try {
-      audio.play().catch(e => console.log("Audio diblokir browser"));
-    } catch(e) {}
+    // Putar lagu langsung melalui elemen DOM
+    var audio = document.getElementById("linkmp3");
+    if (audio) {
+      audio.play().catch(function(error) {
+        console.log("Audio diblokir atau gagal dimuat: ", error);
+      });
+    }
     
     document.getElementById("kadoIn").style.display = "none";
     document.getElementById("ket").style.display = "none";
@@ -145,21 +169,28 @@
     if(countLove >= 4) {
       document.getElementById("kolombaru").style.display = "none";
       document.getElementById("pesan1").style.display = "none";
-      tampilPesanSatuPerSatu();
+      
+      // Tampilkan pesan pertama dan tombol klik lanjut
+      document.getElementById(listPesan[0]).style.display = "block";
+      document.getElementById("TombolNext").style.display = "block";
     }
   }
 
-  async function tampilPesanSatuPerSatu() {
-    let listPesan = ["pesan3", "pesan4", "pesan5", "pesan6", "pesan7", "pesan8", "pesan9", "pesan10"];
+  function lanjutkanTeks() {
+    // Sembunyikan pesan saat ini
+    document.getElementById(listPesan[indexPesan]).style.display = "none";
     
-    for (let i = 0; i < listPesan.length; i++) {
-      let el = document.getElementById(listPesan[i]);
-      el.style.display = "block";
-      await new Promise(r => setTimeout(r, 2500));
-      if (i < listPesan.length - 1) el.style.display = "none";
+    indexPesan++;
+    
+    if (indexPesan < listPesan.length) {
+      // Tampilkan pesan berikutnya
+      document.getElementById(listPesan[indexPesan]).style.display = "block";
+    } else {
+      // Jika pesan sudah habis, munculkan kalimat terakhir & tombol WA
+      document.getElementById("pesan10").style.display = "block";
+      document.getElementById("TombolNext").style.display = "none";
+      document.getElementById("Tombol").style.display = "block";
     }
-    
-    document.getElementById("Tombol").style.display = "block";
   }
 
   async function menuju() {
